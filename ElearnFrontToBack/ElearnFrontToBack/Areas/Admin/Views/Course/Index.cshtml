@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Course>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+<div class="container my-5">
+    <a class="btn btn-success text-white" asp-action="Create" style="float:right;">Create</a>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var course in Model)
+                {
+                    <tr>
+                        <td class="py-1">
+                            <img style="width:70px; height:70px; border-radius:50%" src="~/images/@course.CourseImages.FirstOrDefault()?.Image" />
+                        </td>
+                         <td class="py-1">
+                            @course.Name
+                        </td>
+                       
+                        <td class="py-1">
+                            @course.Price
+                        </td>
+                        
+                        
+                        
+
+                        <td>
+                            <div class="d-flex">
+                                <a class="btn btn-outline-info mx-2" asp-action="Detail" asp-route-id="@course.Id">
+                                    Info
+                                </a>
+
+                                <a class="btn btn-outline-primary mx-2" asp-action="Edit" asp-route-id="@course.Id">
+                                    Edit
+                                </a>
+
+                                <form method="post" asp-action="Delete" asp-route-id="@course.Id">
+                                    <button type="submit" class="btn btn-outline-danger">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                           
+                              
+                           
+                        </td>
+
+
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>
+
